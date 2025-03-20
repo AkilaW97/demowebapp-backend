@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "products")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Product {
 
@@ -16,20 +15,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
-    private Double price;
-
-    @Column(nullable = false, length = 1000)
     private String description;
-
-    private String imageUrl;
-
-    /*
-        This represents products in the database.
-        It includes name, price, description, and image URL.
-        @Column(nullable = false) ensures required fields.
-     */
+    private double price;
 }
