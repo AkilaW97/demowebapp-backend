@@ -48,8 +48,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())  // Disable CSRF for APIs
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Allow frontend requests
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()  // Allow login and registration
-                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()// Public access for browsing
+                        .requestMatchers("/api/auth/**").permitAll()  // Allow login, register & logout
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()  // Public browsing
                         .requestMatchers(HttpMethod.POST, "/api/products").hasAuthority("ROLE_ADMIN")  // Only Admins can add
                         .anyRequest().authenticated()
                 )
@@ -57,7 +57,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 
     // Fix: Added missing corsConfigurationSource() method
     @Bean
